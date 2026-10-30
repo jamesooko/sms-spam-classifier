@@ -1,0 +1,78 @@
+{
+  "data_checks": {
+    "source_url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+    "archive_sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+    "raw_rows": 5574,
+    "conflicting_text_groups": 0,
+    "conflict_rows_excluded": 0,
+    "duplicate_rows_removed": 415,
+    "clean_rows": 5159,
+    "train_rows": 4127,
+    "test_rows": 1032,
+    "train_spam": 514,
+    "test_spam": 128,
+    "normalized_text_overlap": 0
+  },
+  "seed": 42,
+  "test_fraction": 0.2,
+  "cv_folds": 5,
+  "selection_metric": "training cross-validation spam F1",
+  "decision_threshold": 0.5,
+  "selected_model": "naive_bayes",
+  "cross_validation": [
+    {
+      "model": "logistic_regression",
+      "training_cv_spam_f1": 0.9197824938631838,
+      "parameters": {
+        "classifier__C": 8
+      }
+    },
+    {
+      "model": "naive_bayes",
+      "training_cv_spam_f1": 0.9362211925893709,
+      "parameters": {
+        "classifier__alpha": 0.1
+      }
+    }
+  ],
+  "test_metrics": [
+    {
+      "model": "logistic_regression",
+      "selected_by_training_cv": false,
+      "accuracy": 0.9825581395348837,
+      "spam_precision": 1.0,
+      "spam_recall": 0.859375,
+      "spam_f1": 0.9243697478991597,
+      "roc_auc": 0.9968974695796461,
+      "average_precision": 0.9852872695595426,
+      "tn": 904,
+      "fp": 0,
+      "fn": 18,
+      "tp": 110
+    },
+    {
+      "model": "naive_bayes",
+      "selected_by_training_cv": true,
+      "accuracy": 0.9844961240310077,
+      "spam_precision": 0.9745762711864406,
+      "spam_recall": 0.8984375,
+      "spam_f1": 0.9349593495934959,
+      "roc_auc": 0.9880911227876106,
+      "average_precision": 0.97057453382349,
+      "tn": 901,
+      "fp": 3,
+      "fn": 13,
+      "tp": 115
+    }
+  ],
+  "always_ham_baseline": {
+    "accuracy": 0.875968992248062,
+    "spam_recall": 0,
+    "spam_f1": 0
+  },
+  "versions": {
+    "python": "3.12.14",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4"
+  }
+}
